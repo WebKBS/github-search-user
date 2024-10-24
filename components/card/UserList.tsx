@@ -2,7 +2,7 @@ import UserItem from "@/components/card/UserItem";
 import { getSearchedUsers } from "@/data/usersData";
 
 const UserList = async () => {
-  const data = await getSearchedUsers("kimsd");
+  const data = await getSearchedUsers("nomard");
 
   return (
     <div className="max-w-2xl mx-auto">
