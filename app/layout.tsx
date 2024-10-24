@@ -3,6 +3,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import TanStackProvider from "@/providers/TanstackProvider";
 import Header from "@/components/header";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Search Github Users",
@@ -16,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         <TanStackProvider>
           <Header />
           {children}
