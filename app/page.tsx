@@ -1,7 +1,7 @@
 import Section from "@/components/layouts/Section";
 import SearchInput from "@/components/inputs/SearchInput";
 
-import UserList from "@/components/card/UserList";
+import HomeSearchListContainer from "@/container/home/HomeSearchListContainer";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
         <SearchInput />
       </Section>
       <Section className="pb-[120px]">
-        <UserList />
+        <HomeSearchListContainer />
       </Section>
     </main>
   );

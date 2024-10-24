@@ -1,13 +1,11 @@
 import UserItem from "@/components/card/UserItem";
-import { getSearchedUsers } from "@/data/usersData";
+import { User } from "@/types/userType";
 
-const UserList = async () => {
-  const data = await getSearchedUsers("nomard");
-
+const UserList = ({ data }: { data: User[] }) => {
   return (
     <div className="max-w-2xl mx-auto">
       <ul className="flex flex-col gap-6">
-        {data.items.map((user) => (
+        {data.map((user) => (
           <UserItem
             id={user.id}
             avatar_url={user.avatar_url}
