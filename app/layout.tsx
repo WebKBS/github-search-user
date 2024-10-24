@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import TanStackProvider from "@/providers/TanstackProvider";
+import Header from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Search Github Users",
@@ -16,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <TanStackProvider>{children}</TanStackProvider>
+        <TanStackProvider>
+          <Header />
+          {children}
+        </TanStackProvider>
       </body>
     </html>
   );

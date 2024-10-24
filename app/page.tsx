@@ -1,3 +1,9 @@
+import Section from "@/components/layouts/Section";
+
 export default function Home() {
-  return <h1>Hello world</h1>;
+  return (
+    <main>
+      <Section className="py-[120px]">Container</Section>
+    </main>
+  );
 }
