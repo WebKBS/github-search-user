@@ -6,16 +6,14 @@ import { User } from "@/types/userType";
 import { useSearchParams } from "next/navigation";
 
 const HomeSearchListContainer = () => {
-  const serachParams = useSearchParams();
-  const query = serachParams.get("username") || "";
+  const searchParams = useSearchParams();
+  const query = searchParams.get("username") || "";
 
   const { data, isLoading, isError } = useQuery<User[]>({
     queryKey: ["searchedUsers", query],
     queryFn: () => getSearchUserList({ query }),
     staleTime: 0,
   });
-
-  console.log(data);
 
   if (!data) return null;
 
