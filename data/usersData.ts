@@ -27,7 +27,7 @@ export const getSearchedUsers = async (
 ): Promise<SearchUserList> => {
   try {
     const response = await fetch(
-      `https://api.github.com/search/users?q=${query}`,
+      `https://api.github.com/search/users?per_page=20&q=${query}`,
       {
         headers: {
           Accept: "application/vnd.github+json",
