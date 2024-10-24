@@ -13,9 +13,11 @@ export const GET = async (request: NextRequest) => {
         url = `https://api.github.com/users?per_page=20`;
         break;
       default:
-        url = `https://api.github.com/search/users?per_page=20&q=${query}`;
+        url = `https://api.github.com/search/users?per_page=20&q=${query}+in:login`;
         break;
     }
+
+    console.log(url);
 
     const data = await fetchGitHubData(url);
 

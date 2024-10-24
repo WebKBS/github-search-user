@@ -15,6 +15,8 @@ const HomeSearchListContainer = () => {
     staleTime: 0,
   });
 
+  console.log(data);
+
   if (!data) return null;
 
   if (data.length === 0) {
