@@ -1,49 +1,50 @@
 "use client";
-import UserList from "@/components/card/UserList";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { getSearchUserList } from "@/data/client/usersData";
 import { User } from "@/types/userType";
 import { useSearchParams } from "next/navigation";
+import UserItem from "@/components/card/UserItem";
 
 const HomeSearchListContainer = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("username") || "";
 
-  const { data, isLoading, isError } = useQuery<User[]>({
-    queryKey: ["searchedUsers", query],
+  const { data, isFetching } = useInfiniteQuery<User[]>({
+    queryKey: ["searchedUsers"],
     queryFn: () => getSearchUserList({ query }),
-    staleTime: 0,
+    getNextPageParam: (lastPage) => {
+      return lastPage;
+    },
+
+    initialPageParam: 1,
   });
 
   console.log(data);
 
-  if (!data) return null;
-
-  if (data.length === 0) {
+  if (isFetching) {
     return (
       <div className="max-w-2xl mx-auto text-center">
-        <p>검색 결과가 없습니다.</p>
+        <p>Fetching...</p>
       </div>
     );
   }
 
-  if (isLoading) {
-    return (
-      <div className="max-w-2xl mx-auto text-center">
-        <p>Loading...</p>
-      </div>
-    );
-  }
+  const content = data?.pages.map((page) =>
+    page.map((user) => (
+      <UserItem
+        avatar_url={user.avatar_url}
+        login={user.login}
+        html_url={user.html_url}
+        key={user.id}
+      />
+    )),
+  );
 
-  if (isError) {
-    return (
-      <div className="max-w-2xl mx-auto text-center">
-        <p>에러가 발생했습니다.</p>
-      </div>
-    );
-  }
-
-  return <UserList data={data} />;
+  return (
+    <div className="max-w-2xl mx-auto">
+      <ul className="flex flex-col gap-6">{content}</ul>
+    </div>
+  );
 };
 
 export default HomeSearchListContainer;
