@@ -1,11 +1,11 @@
 "use client";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import UserItem from "@/components/card/UserItem";
 import { getSearchUserList } from "@/data/client/usersData";
 import { SearchUserList } from "@/types/userType";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-import UserItem from "@/components/card/UserItem";
+import { useInView } from "react-intersection-observer";
 
 const HomeSearchListContainer = () => {
   const searchParams = useSearchParams();
@@ -31,6 +31,7 @@ const HomeSearchListContainer = () => {
       // 데이터가 있으면 다음 페이지 번호 반환
       return allPages.length + 1;
     },
+    staleTime: 1000 * 60 * 5, // 5분
     initialPageParam: 1,
   });
 
@@ -56,7 +57,7 @@ const HomeSearchListContainer = () => {
     );
   }
 
-  const totalCount = data?.pages.map((page) => page.total_count);
+  const totalCount = data?.pages[0]?.total_count || 0;
 
   // console.log(data);
 
