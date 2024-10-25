@@ -33,6 +33,7 @@ const HomeSearchListContainer = () => {
     },
     staleTime: 1000 * 60 * 5, // 5분
     initialPageParam: 1,
+    gcTime: 1000 * 60 * 5, // 5분
   });
 
   useEffect(() => {
@@ -42,19 +43,11 @@ const HomeSearchListContainer = () => {
   }, [inView, fetchNextPage, hasNextPage]);
 
   if (error) {
-    return (
-      <div className="max-w-2xl mx-auto text-center">
-        <p>Error fetching data {error.message}</p>
-      </div>
-    );
+    return <p>Error fetching data {error.message}</p>;
   }
 
   if (isPending) {
-    return (
-      <div className="max-w-2xl mx-auto text-center">
-        <p>Loading...</p>
-      </div>
-    );
+    return <p>Loading...</p>;
   }
 
   const totalCount = data?.pages[0]?.total_count || 0;
@@ -74,11 +67,11 @@ const HomeSearchListContainer = () => {
   );
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div>
       <p className="mb-4">
         검색된 유저 수: {totalCount?.toLocaleString("ko-KR")}
       </p>
-      <ul className="flex flex-col gap-6">{content}</ul>
+      <ul className="flex flex-col gap-6 mt-4">{content}</ul>
       {isFetchingNextPage && <p>Loading more...</p>}
     </div>
   );
