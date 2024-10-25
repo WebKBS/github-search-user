@@ -2,17 +2,19 @@ import { User } from "@/types/userType";
 
 export const getSearchUserList = async ({
   query,
+  page = 1,
 }: {
-  query: string;
+  query?: string;
+  page: number;
 }): Promise<User[]> => {
   let url: string;
 
   switch (query) {
     case "":
-      url = "/api/users";
+      url = `/api/users?page=${page}`;
       break;
     default:
-      url = `/api/users?username=${query}`;
+      url = `/api/users?username=${query}&page=${page}`;
   }
 
   try {
@@ -24,6 +26,7 @@ export const getSearchUserList = async ({
       throw new Error("Failed to fetch data");
     }
 
+    // console.log(await response.json());
     return await response.json();
   } catch (error) {
     console.error(error);
