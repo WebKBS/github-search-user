@@ -1,4 +1,4 @@
-import { User } from "@/types/userType";
+import { SearchUserList } from "@/types/userType";
 
 export const getSearchUserList = async ({
   username,
@@ -6,7 +6,7 @@ export const getSearchUserList = async ({
 }: {
   username?: string;
   page: number;
-}): Promise<User[]> => {
+}): Promise<SearchUserList> => {
   let url: string;
 
   switch (username) {
@@ -30,6 +30,10 @@ export const getSearchUserList = async ({
     return await response.json();
   } catch (error) {
     console.error(error);
-    return [];
+    return {
+      total_count: 0,
+      incomplete_results: false,
+      items: [],
+    };
   }
 };

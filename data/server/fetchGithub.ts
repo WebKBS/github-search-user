@@ -1,5 +1,7 @@
 "use server";
+
 export const fetchGitHubData = async (url: string) => {
+  console.log(url);
   const response = await fetch(url, {
     headers: {
       Accept: "application/vnd.github+json",
