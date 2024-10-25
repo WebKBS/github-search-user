@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 const HomeSearchListContainer = () => {
   const searchParams = useSearchParams();
-  const query = searchParams.get("username") || "";
+  const username = searchParams.get("username") || "";
   const [ref, inView] = useInView();
 
   const {
@@ -20,9 +20,9 @@ const HomeSearchListContainer = () => {
     isFetchingNextPage,
     hasNextPage,
   } = useInfiniteQuery<User[]>({
-    queryKey: ["searchedUsers", query],
+    queryKey: ["searchedUsers", username],
     queryFn: ({ pageParam }) =>
-      getSearchUserList({ query, page: pageParam as number }),
+      getSearchUserList({ username, page: pageParam as number }),
     getNextPageParam: (lastPage, allPages) => {
       // lastPage의 길이가 0이면 undefined 반환
       if (lastPage.length === 0) {
@@ -39,8 +39,6 @@ const HomeSearchListContainer = () => {
       fetchNextPage();
     }
   }, [inView, fetchNextPage, hasNextPage]);
-
-  // console.log(data);
 
   if (error) {
     return (

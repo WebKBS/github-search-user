@@ -1,20 +1,20 @@
 import { User } from "@/types/userType";
 
 export const getSearchUserList = async ({
-  query,
+  username,
   page = 1,
 }: {
-  query?: string;
+  username?: string;
   page: number;
 }): Promise<User[]> => {
   let url: string;
 
-  switch (query) {
+  switch (username) {
     case "":
       url = `/api/users?page=${page}`;
       break;
     default:
-      url = `/api/users?username=${query}&page=${page}`;
+      url = `/api/users?username=${username}&page=${page}`;
   }
 
   try {
