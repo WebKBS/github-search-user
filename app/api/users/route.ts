@@ -3,13 +3,13 @@ import { NextRequest } from "next/server";
 import { fetchGitHubData } from "@/data/server/fetchGithub";
 
 export const GET = async (request: NextRequest) => {
-  try {
-    const username = request.nextUrl.searchParams.get("username") || "";
-    const page = request.nextUrl.searchParams.get("page") || 1;
+  const username = request.nextUrl.searchParams.get("username") || "";
+  const page = request.nextUrl.searchParams.get("page") || 1;
 
+  try {
     let url: string;
 
-    console.log(username);
+    // console.log(username);
 
     switch (username) {
       case "":
@@ -20,7 +20,7 @@ export const GET = async (request: NextRequest) => {
         break;
     }
 
-    console.log(url);
+    // console.log(url);
 
     const data = await fetchGitHubData(url);
     // console.log(data);
