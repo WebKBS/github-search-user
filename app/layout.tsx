@@ -4,6 +4,7 @@ import "./globals.css";
 import TanStackProvider from "@/providers/TanstackProvider";
 import Header from "@/components/header";
 import { Inter } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
           <Header />
           {children}
         </TanStackProvider>
+        <Toaster />
       </body>
     </html>
   );
