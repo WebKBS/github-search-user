@@ -55,7 +55,7 @@ const HomeSearchListContainer = () => {
   const totalCount = data?.pages[0]?.total_count || 0;
 
   const content = data?.pages.map((page) =>
-    page.items.map((user) => <UserItem ref={ref} user={user} />),
+    page.items.map((user) => <UserItem key={user.id} ref={ref} user={user} />),
   );
 
   return (
@@ -63,7 +63,7 @@ const HomeSearchListContainer = () => {
       <p className="mb-4">
         검색된 유저 수: {totalCount?.toLocaleString("ko-KR")}
       </p>
-      <ul className="flex flex-col gap-6 mt-4">{content}</ul>
+      <ul className="flex flex-col gap-4 mt-4">{content}</ul>
       {isFetchingNextPage && <Loader />}
       {totalCount === 0 && (
         <p className="text-center">
