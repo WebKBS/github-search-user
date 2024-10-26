@@ -1,8 +1,8 @@
-'use client';
+"use client";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import {useRef} from "react";
-import {usePathname, useRouter} from "next/navigation";
+import { useRef } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 const SearchInput = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -16,12 +16,8 @@ const SearchInput = () => {
       return router.push(pathname);
     }
 
-    router.push(
-      `${pathname}?username=${inputRef.current.value}`
-    );
+    router.push(`${pathname}?username=${inputRef.current.value}`);
   };
-
-
 
   return (
     <form action="">

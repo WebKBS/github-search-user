@@ -7,9 +7,7 @@ interface SectionProps {
 
 const Section = ({ children, className }: SectionProps) => {
   return (
-    <section className={cn("container mx-auto px-4", className)}>
-      {children}
-    </section>
+    <section className={cn("mx-auto px-4", className)}>{children}</section>
   );
 };
 

@@ -6,6 +6,8 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import UserItemSkeleton from "@/components/skeleton/UserItemSkeleton";
+import Loader from "@/components/loader/Loader";
 
 const HomeSearchListContainer = () => {
   const searchParams = useSearchParams();
@@ -47,12 +49,10 @@ const HomeSearchListContainer = () => {
   }
 
   if (isPending) {
-    return <p>Loading...</p>;
+    return <UserItemSkeleton />;
   }
 
   const totalCount = data?.pages[0]?.total_count || 0;
-
-  // console.log(data);
 
   const content = data?.pages.map((page) =>
     page.items.map((user) => (
@@ -67,13 +67,22 @@ const HomeSearchListContainer = () => {
   );
 
   return (
-    <div>
+    <>
       <p className="mb-4">
         검색된 유저 수: {totalCount?.toLocaleString("ko-KR")}
       </p>
       <ul className="flex flex-col gap-6 mt-4">{content}</ul>
-      {isFetchingNextPage && <p>Loading more...</p>}
-    </div>
+      {isFetchingNextPage && <Loader />}
+      {totalCount === 0 && (
+        <p className="text-center">
+          &#34;
+          <strong className="font-bold text-lg text-red-500 h-[120px]">
+            {username}
+          </strong>
+          &#34;에 대한 유저가 없습니다.
+        </p>
+      )}
+    </>
   );
 };
 
