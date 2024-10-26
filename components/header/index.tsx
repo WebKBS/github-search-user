@@ -12,7 +12,7 @@ const bungee = Bungee({
 const Header = () => {
   return (
     <header className={bungee.className}>
-      <div className="container mx-auto py-3 px-4 flex gap-4 items-center justify-between">
+      <div className="container mx-auto py-3 px-4 flex gap-4 flex-wrap items-center justify-between">
         <Link href={"/"} className="font-bold text-2xl">
           SEARCH USERS
         </Link>

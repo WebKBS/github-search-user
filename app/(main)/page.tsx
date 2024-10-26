@@ -3,6 +3,8 @@ import SearchInput from "@/components/inputs/SearchInput";
 
 import HomeSearchListContainer from "@/container/home/HomeSearchListContainer";
 import { Suspense } from "react";
+import UserItemSkeleton from "@/components/skeleton/UserItemSkeleton";
+import ScrollTopButton from "@/components/buttons/ScrollTopButton";
 
 export default function Home() {
   return (
@@ -14,10 +16,11 @@ export default function Home() {
         <SearchInput />
       </Section>
       <Section className="pb-[120px] max-w-2xl">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<UserItemSkeleton />}>
           <HomeSearchListContainer />
         </Suspense>
       </Section>
+      <ScrollTopButton />
     </main>
   );
 }

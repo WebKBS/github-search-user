@@ -1,5 +1,6 @@
 import Section from "@/components/layouts/Section";
 import BookmarkListContainer from "@/container/bookmarks/BookmarkListContainer";
+import ScrollTopButton from "@/components/buttons/ScrollTopButton";
 
 const BookMarkPage = () => {
   return (
@@ -10,6 +11,7 @@ const BookMarkPage = () => {
       <Section className="pb-[120px] max-w-2xl">
         <BookmarkListContainer />
       </Section>
+      <ScrollTopButton />
     </main>
   );
 };

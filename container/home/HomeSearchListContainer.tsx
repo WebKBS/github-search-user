@@ -33,9 +33,9 @@ const HomeSearchListContainer = () => {
       // 데이터가 있으면 다음 페이지 번호 반환
       return allPages.length + 1;
     },
-    staleTime: 1000 * 60 * 5, // 5분
+    staleTime: 1000 * 60 * 2, // 2분
     initialPageParam: 1,
-    gcTime: 1000 * 60 * 5, // 5분
+    gcTime: 1000 * 60 * 10, // 10분
   });
 
   useEffect(() => {
