@@ -55,15 +55,7 @@ const HomeSearchListContainer = () => {
   const totalCount = data?.pages[0]?.total_count || 0;
 
   const content = data?.pages.map((page) =>
-    page.items.map((user) => (
-      <UserItem
-        ref={ref}
-        avatar_url={user.avatar_url}
-        login={user.login}
-        html_url={user.html_url}
-        key={user.id}
-      />
-    )),
+    page.items.map((user) => <UserItem ref={ref} user={user} />),
   );
 
   return (

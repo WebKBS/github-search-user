@@ -3,54 +3,56 @@ import noProfileImage from "@/public/images/no-profile.png";
 import UserName from "@/components/typography/UserName";
 import Link from "next/link";
 import { User } from "@/types/userType";
-import { Bookmark } from "lucide-react";
 import { shimmer, toBase64 } from "@/utils/imageSkeleton";
-import React, { Ref } from "react";
+import React from "react";
+import BookmarkButton from "@/components/buttons/BookmarkButton";
 
-type UserItemProps = Pick<User, "avatar_url" | "login" | "html_url"> & {
-  ref: Ref<HTMLLIElement>;
+type UserItemProps = {
+  user: User;
 };
 
 const UserItem = React.forwardRef<HTMLLIElement, UserItemProps>(
-  ({ avatar_url, login, html_url }, ref) => {
+  ({ user }, ref) => {
     return (
       <li
         ref={ref}
         className="border p-4 rounded-md flex gap-6 relative items-center"
       >
         <div className="relative h-[64px] w-[64px] rounded-full overflow-hidden">
-          {avatar_url ? (
+          {user.avatar_url ? (
             <Image
-              src={avatar_url}
-              alt={login}
+              src={user.avatar_url}
+              alt={user.login}
               fill
               sizes={"10vw"}
-              blurDataURL={avatar_url}
+              blurDataURL={user.avatar_url}
               placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(100, 100))}`}
             />
           ) : (
-            <Image src={noProfileImage} alt={login} fill />
+            <Image src={noProfileImage} alt={user.login} fill />
           )}
         </div>
         <div className="flex flex-col break-all gap-2">
-          {login ? <UserName label={login} /> : <UserName label={"No Name"} />}
-          {html_url ? (
+          {user.login ? (
+            <UserName label={user.login} />
+          ) : (
+            <UserName label={"No Name"} />
+          )}
+          {user.html_url ? (
             <Link
               target="_blank"
               rel="noopener noreferrer
                 "
-              href={html_url}
+              href={user.html_url}
               className="hover:underline"
             >
-              {html_url}
+              {user.html_url}
             </Link>
           ) : (
             <p>URL이 없습니다.</p>
           )}
         </div>
-        <button type="button" className="absolute right-4 top-4">
-          <Bookmark size={24} fill={""} />
-        </button>
+        <BookmarkButton user={user} />
       </li>
     );
   },
