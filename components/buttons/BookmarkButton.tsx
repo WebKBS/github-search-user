@@ -18,7 +18,10 @@ const BookmarkButton = ({ user }: BookmarkButtonProps) => {
     const message = isBookmarked ? "북마크에서 제거" : "북마크에 추가";
 
     toast(`${user.login}님을 ${message}했습니다.`, {
-      description: bookmark.length + 1 + "개의 북마크가 있습니다.",
+      description: isBookmarked
+        ? bookmark.length - 1 + "개의 북마크가 있습니다."
+        : bookmark.length + 1 + "개의 북마크가 있습니다.",
+
       action: {
         label: "닫기",
         onClick: () => {},
