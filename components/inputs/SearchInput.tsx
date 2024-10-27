@@ -33,6 +33,7 @@ const SearchInput = () => {
         <button
           className="absolute right-0 top-1/2 -translate-y-1/2 w-[50px] h-[50px] flex items-center justify-center"
           onClick={handleSearch}
+          aria-label={"검색 버튼"}
         >
           <Search />
         </button>

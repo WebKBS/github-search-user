@@ -36,6 +36,7 @@ const BookmarkButton = ({ user }: BookmarkButtonProps) => {
       type="button"
       className="absolute right-4 top-4"
       onClick={handleBookmark}
+      aria-label={isBookmarked ? "북마크 해제 버튼" : "북마크 추가 버튼"}
     >
       <Bookmark size={24} fill={isBookmarked ? "red" : "none"} />
     </button>

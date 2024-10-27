@@ -15,7 +15,7 @@ const HeaderNavigation = () => {
             href={item.href}
             className={cn(
               "text-xl uppercase hover:text-blue-500/60",
-              pathname === item.href ? "text-blue-500" : "text-gray-500",
+              pathname === item.href ? "text-blue-500" : "text-gray-400",
             )}
           >
             {item.title}
